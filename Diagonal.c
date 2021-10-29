@@ -1,12 +1,13 @@
-#include <CaseManager.h>
-#include <GraphismeManager.h>
+#include <BlocManager.h>
+#include <NCursesManager.h>
 #include <time.h>
 
-const double delai = 0.5;
+//Delai entre 2 déplacements en secondes
+const double DELAI = 0.5;
 
 int main(){
-    initEcran(delai);
-    while( !blocSolide(numero de la case du prochain deplacement) ){
+    initFenetre();
+    while( !isBlocSolide(numero de la case du prochain deplacement) ){
 
         /*
         fait des trucs en fonction du numero de la case
@@ -14,19 +15,20 @@ int main(){
         fait des trucs au pif (animation par exemple)
         */
 
-        changerCaractere(la grille, position en x du perso, position en y du perso);
+        changerCaractere(grille, position en x du perso, position en y du perso);
 
 
 
         rafraichirEcran();
 
-
-        int pressedKey = getch();
-        if(pressedKey!=ERR){
-
+        time_t debutAttente = time();
+        while(difftime(debutAttente,time())<DELAI){
+            if(isToucheAppuyee()){
+                //key pressed, changer le sens du perso en hauteur
+            }
         }
-    }
-    finEcran();
-//test
 
+    }
+    finFenetre();
+    return 0;
 }
