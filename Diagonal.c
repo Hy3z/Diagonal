@@ -1,5 +1,5 @@
-#include <BlocManager.h>
-#include <NCursesManager.h>
+#include "BlocManager.h"
+#include "NCursesManager.h"
 #include <time.h>
 
 //Delai entre 2 déplacements en secondes

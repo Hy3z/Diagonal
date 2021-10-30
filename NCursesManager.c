@@ -14,6 +14,7 @@ void initFenetre(){
     noecho();
     curs_set(FALSE);
     nodelay(stdscr,true);
+    keypad(stdsrc, true);
 }
 
 void finFenetre(){
