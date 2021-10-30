@@ -1,8 +1,8 @@
 #include <ncurses.h>
 #include <stdbool.h>
 
-void changerCaractere(int grille[][], char blocCaractere[], int x, int y){
-    mvaddch(y, x, blocCaractere[grille[y][x]]);
+void changerCaractere(int grille[0][0], const char BLOC_CARACTERE[], int x, int y){
+    mvaddch(y, x, BLOC_CARACTERE[grille[y][x]]);
 }
 
 void rafraichirEcran(){
@@ -12,9 +12,9 @@ void rafraichirEcran(){
 void initFenetre(){
     initscr();
     noecho();
-    curs_set(FALSE);
+    curs_set(false);
     nodelay(stdscr,true);
-    keypad(stdsrc, true);
+    keypad(stdscr, true);
 }
 
 void finFenetre(){

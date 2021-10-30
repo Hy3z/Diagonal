@@ -1,13 +1,13 @@
 #include <stdbool.h>
 #include <assert.h>
 
-int NOMBRE_BLOCS = 2;
+#define NOMBRE_BLOCS 2
 
-int BLOC_COLLISION[NOMBRE_BLOCS] = {
+const int BLOC_COLLISION[NOMBRE_BLOCS] = {
     0,1
 };
 
-char BLOC_CARACTERE[NOMBRE_BLOCS] = {
+const char BLOC_CARACTERE[NOMBRE_BLOCS] = {
     '!','-'
 };
 

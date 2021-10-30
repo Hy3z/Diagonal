@@ -21,8 +21,8 @@ int main(){
 
         rafraichirEcran();
 
-        time_t debutAttente = time();
-        while(difftime(debutAttente,time())<DELAI){
+        time_t debutAttente = time(NULL);
+        while(difftime(debutAttente,time(NULL))<DELAI){
             if(isToucheAppuyee()){
                 //key pressed, changer le sens du perso en hauteur
             }

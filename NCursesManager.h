@@ -5,7 +5,7 @@
 #include <stdbool.h>
 
 //Affiche le caractere d'une case de la grille
-void changerCaractere(int grille[][], char blocCaractere[], int x, int y);
+void changerCaractere(int grille[0][0], const char BLOC_CARACTERE[], int x, int y);
 
 //Rafraichie l'écran
 void rafraichirEcran();
