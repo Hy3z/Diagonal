@@ -3,18 +3,15 @@
 #include <assert.h>
 
 
-bool deplaceEnhaut;
-bool deplaceAdroite;
-struct pos {
-	int y;
-	int x;
-};
+
+bool deplaceEnhaut = true;
+bool deplaceAdroite = true;
 struct pos p;
 
 
 
 
-int prochcase(int tab[][],int max_x, int max_y, int min_x, int min_y) {
+int prochcase(int tab[30][100],int max_x, int max_y) {
 	if (deplaceAdroite) {
 		if (deplaceEnhaut) {
 			return tab[p.y + 1][p.x + 1];
@@ -28,18 +25,21 @@ int prochcase(int tab[][],int max_x, int max_y, int min_x, int min_y) {
 			return tab[p.y - 1][p.x - 1];
 		}
 	}
-	if (p.x < max_x, p.y < max_y, p.x > min_x, p.y > min_y) {
-		end -1;
+	if (p.x > max_x, p.y > max_y, p.x < 0, p.y < 0) {
+		assert(0<1);
+		//end -1;
 	}
 }
 
 
 
-void deplace_joueur(int tab[][],int max_x, int max_y, int min_x, int min_y) {
+void deplace_joueur(int tab[30][100],int max_x, int max_y) {
+    int oldx = p.x;
+    int oldy = p.y;
 	if (deplaceAdroite) {
 		if (deplaceEnhaut) {
 			tab[p.y + 1][p.x + 1] = tab[p.y][p.x];
-			p.y += 1,p.x += 1; 
+			p.y += 1,p.x += 1;
 		} else {
 			tab[p.y - 1][p.x + 1] = tab[p.y][p.x];
 			p.y -= 1, p.x += 1;
@@ -53,26 +53,29 @@ void deplace_joueur(int tab[][],int max_x, int max_y, int min_x, int min_y) {
 			p.y -= 1, p.x -= 1;
 		}
 	}
-	if (p.x < max_x, p.y < max_y, p.x > min_x, p.y > min_y) {
-		end -1;
-	}	
-	tab[p.y][p.x] = 0;
+	if (p.x > max_x, p.y > max_y, p.x < 0, p.y < 0) {
+		assert(0<1);
+		//end -1;
+	}
+	tab[oldy][oldx] = 0;
 }
 
 
 
 void inverse_horizontale() {
-	deplaceAdroite != deplaceAdroite;
+	deplaceAdroite = !deplaceAdroite;
 }
-	
 
+void inverse_verticale() {
+	deplaceEnhaut = !deplaceEnhaut;
+}
 
 struct pos positions() {
 	return p;
 }
-	
-	
-int modif_pos(int a, int b) {
+
+
+void modif_pos(int a, int b) {
 	p.y = a;
 	p.x = b;
 }

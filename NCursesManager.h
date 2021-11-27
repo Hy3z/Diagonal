@@ -5,18 +5,20 @@
 #include <stdbool.h>
 
 //Affiche le caractere d'une case de la grille
-void changerCaractere(int grille[0][0], const char BLOC_CARACTERE[], int x, int y);
+void changerCaractere(int grille[30][100], const unsigned char BLOC_CARACTERE[], int x, int y);
 
-//Rafraichie l'écran
+//Rafraichie l'Ã©cran
 void rafraichirEcran();
 
-//Initialise les différents composants de la fenêtre
+//Initialise les diffÃ©rents composants de la fenÃªtre
 void initFenetre();
 
-//Ferme la fenêtre
+//Ferme la fenÃªtre
 void finFenetre();
 
-//Renvoie si une touche est appuyée sur le clavier à cet instant
+void affiche();
+
+//Renvoie si une touche est appuyÃ©e sur le clavier Ã  cet instant
 bool isToucheAppuyee();
 
 #endif

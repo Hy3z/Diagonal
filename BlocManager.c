@@ -1,14 +1,28 @@
-#include <stdbool.h>
+﻿#include <stdbool.h>
 #include <assert.h>
+#include <ncurses.h>
 
-#define NOMBRE_BLOCS 2
-
+#define NOMBRE_BLOCS 8
 const int BLOC_COLLISION[NOMBRE_BLOCS] = {
-    0,1
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
 };
 
-const char BLOC_CARACTERE[NOMBRE_BLOCS] = {
-    '!','-'
+unsigned char BLOC_CARACTERE[NOMBRE_BLOCS] = {
+    ' ',
+    '*',
+    '─',
+    '│',
+    '┌',
+    '┐',
+    '└',
+    '┘'
 };
 
 bool isBlocSolide(int numeroBloc){
