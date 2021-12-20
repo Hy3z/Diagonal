@@ -1,8 +1,9 @@
 #include <ncurses.h>
 #include <stdbool.h>
+#include "BlocManager.h"
 
-void changerCaractere(int grille[30][100], const char BLOC_CARACTERE[], int x, int y){
-    mvaddch(x, y, BLOC_CARACTERE[grille[x][y]]);
+void changerCaractere(int x, int y, char caractere){
+    mvaddch(y, x, caractere);
 }
 
 void rafraichirEcran(){
@@ -17,10 +18,10 @@ void initFenetre(){
     keypad(stdscr, true);
 }
 
-void affiche(int map[30][100], const unsigned char BLOC_CARACTERE[], int x, int y){
-	for(int x1=0 ; x1<x ; x1++){
-		for(int y1=0 ; y1<y ; y1++){
-			changerCaractere(map, BLOC_CARACTERE, x1, y1);
+void affiche(int grille[30][100], int max_x, int max_y){
+    for(int y=0 ; y<max_y ; y++){
+        for(int x=0 ; x<max_x ; x++){
+			changerCaractere(x, y, blocCaractere(grille[y][x]));
 		}
 	}
 }

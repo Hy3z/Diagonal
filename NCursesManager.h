@@ -3,22 +3,23 @@
 
 #include <ncurses.h>
 #include <stdbool.h>
+#include "BlocManager.h"
 
 //Affiche le caractere d'une case de la grille
-void changerCaractere(int grille[30][100], const unsigned char BLOC_CARACTERE[], int x, int y);
+void changerCaractere(int x, int y, char caractere);
 
-//Rafraichie l'Ã©cran
+//Rafraichie l'écran
 void rafraichirEcran();
 
-//Initialise les diffÃ©rents composants de la fenÃªtre
+//Initialise les différents composants de la fenêtre
 void initFenetre();
 
-//Ferme la fenÃªtre
+//Ferme la fenêtre
 void finFenetre();
 
-void affiche();
+void affiche(int grille[30][100], int max_x, int max_y);
 
-//Renvoie si une touche est appuyÃ©e sur le clavier Ã  cet instant
+//Renvoie si une touche est appuyée sur le clavier à cet instant
 bool isToucheAppuyee();
 
 #endif
