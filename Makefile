@@ -11,13 +11,13 @@ NCursesManager.o: NCursesManager.c BlocManager.h
 	gcc -c NCursesManager.c -IC:\MinGW\include\ncurses -lncurses
 
 MapManager.o: MapManager.c
-	gcc -c MapManager.c -IC:\MinGW\include\ncurses -lncurses
+	gcc -c MapManager.c
 	
 Deplacement.o: Deplacement.c NCursesManager.h Personnage.h
 	gcc -c Deplacement.c -IC:\MinGW\include\ncurses -lncurses
 
 Personnage.o: Personnage.c
-	gcc -c Personnage.c -IC:\MinGW\include\ncurses -lncurses
+	gcc -c Personnage.c
 
 
 
