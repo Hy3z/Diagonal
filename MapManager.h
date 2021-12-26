@@ -3,6 +3,8 @@
 
 
 #include <assert.h>
+#include <time.h>
+#include <stdlib.h>
 
 
 /*
@@ -25,8 +27,12 @@ void creerNiveau(int niveau, int grille[30][100]);
 void creerNiveau1(int grille[30][100]);
 
 
-//Place des blocs aléatoirement dans la carte pour chaque colonne
-void blocAleatoire(int grille[30][100], int x, int y);
+/*
+Place des blocs aléatoirement dans la carte pour chaque colonne avec un bloc par colonne
+Les numéros des colonnes sont compris entre min_x et max_x inclus
+Les blocs peuvent se placer sur les lignes entre min_y et max_y inclus
+*/
+void blocAleatoire(int grille[30][100], int min_x, int min_y, int max_x, int max_y);
 
 
 #endif

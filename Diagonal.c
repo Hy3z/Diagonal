@@ -19,7 +19,7 @@ const int DEPART_Y = 1;
 
 
 int main(){
-    secondes_delai  = 0.05;
+    secondes_delai  = 0.1;
 
     //Le delai en ticks est le delai en secondes multiplié par le nombre de ticks par seconde
     double tick_delai = CLOCKS_PER_SEC*secondes_delai;

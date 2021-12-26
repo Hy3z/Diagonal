@@ -5,12 +5,13 @@
 /*Nombre total de blocs implémentés
 On utilise #define afin de pouvoir définir la dimension des tableaux suivants
 */
-#define NOMBRE_BLOCS 18
+#define NOMBRE_BLOCS 19
 
 
 //On définit la constante BLOC_COLLISION
 const int BLOC_COLLISION[NOMBRE_BLOCS] = {
     0,
+    1,
     1,
     1,
     1,
@@ -55,7 +56,9 @@ const char BLOC_CARACTERE[NOMBRE_BLOCS] = {
 		'\\',
 
 		'>',
-		'<'
+		'<',
+
+		'#'
 };
 
 

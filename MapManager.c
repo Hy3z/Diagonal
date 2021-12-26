@@ -1,4 +1,6 @@
 #include <assert.h>
+#include <time.h>
+#include <stdlib.h>
 
 
 /*
@@ -12,6 +14,8 @@ int COIN_HAUT_GAUCHE = 4;
 int COIN_HAUT_DROIT = 5;
 int COIN_BAS_GAUCHE = 6;
 int COIN_BAS_DROIT = 7;
+int MUR_BLOC = 18;
+
 
 
 /*
@@ -61,18 +65,41 @@ void mapVide(int grille[30][100], int x, int y) {
 }
 
 
-void creerNiveau1(int grille[30][100]){
-    mapVide(grille, 100, 30);
+/*Précondition:
+    (min_x) est un entier naturel
+    (min_y) est un entier naturel
+    (max_x) est un entier naturel inférieur à 100
+    (max_y) est un entier naturel inférieur à 30
+*/
+void blocAleatoire(int grille[30][100], int min_x, int min_y, int max_x, int max_y){
+    //precondition
+    assert(min_x>=0 && min_y>=0 && max_x>=0 && max_y>=0 && max_x<100 && max_y<30);
+
+    //Initialise la fonction (rand)
+    srand(time(NULL));
+
+    //Pour chaque colonne entre min_x et max_x
+    for(int x=min_x ; x<=max_x ; x++){
+
+        //(rand) renvoie un entier aléatoire entre 0 et une constante RAND_MAX
+        int random_y = rand();
+
+        //La variable (random_y) contient alors un entier entre 0 et (max_y - min_y)
+        random_y = random_y % (max_y - min_y +1);
+
+        //La variable (random_y) contient alors un entier entre min_y et max_y
+        random_y = random_y + min_y;
+
+        grille[random_y][x] = MUR_BLOC;
+    }
 }
 
 
-/*Précondition:
-    (x) est un entier naturel
-    (y) est un entier naturel
-*/
-void blocAleatoire(int grille[30][100], int x, int y){
-    //precondition
-    assert(x>=0 && y>=0);
+void creerNiveau1(int grille[30][100]){
+    mapVide(grille, 100, 30);
+
+    //Les blocs apparaîtront entre la colonne 10 et la colonne 98
+    blocAleatoire(grille, 10, 2, 98, 28);
 }
 
 

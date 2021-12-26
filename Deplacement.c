@@ -265,7 +265,7 @@ void deplace(int grille[30][100]){
 
     /*
     Remplace dans la grille la queue par du vide
-    Si cette queue a pour position (-1,-1), alors c'est une queue crée par la fonction (creer) déclarée dans "Personnage.h"
+    Si cette queue a pour position (-1,-1), alors c'est une queue créée par la fonction (creer) déclarée dans "Personnage.h"
     */
     if(ancienne_queue_position.x >= 0 && ancienne_queue_position.y >= 0){
         grille[ancienne_queue_position.y][ancienne_queue_position.x] = VIDE;
