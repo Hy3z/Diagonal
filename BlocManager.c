@@ -86,9 +86,9 @@ char blocCaractere(int numeroBloc){
 }
 
 
-/*
-Jeu de test
 
+//Jeu de test
+/*
 #include <stdio.h>
 int main(){
     printf("Collision des blocs suivants: \n");
