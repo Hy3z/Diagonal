@@ -17,7 +17,7 @@ Numéro des blocs correspondant aux nom des variables listées si-dessous
 Pour vérifier la correspondance, consulter le tableau des blocs ou le tableau des déplacements
 On utilise #define afin de pouvoir ensuite utiliser ces "variables" en tant que constantes dans des switch
 */
-
+#define VIDE 0
 #define CORPS_DEFAUT 1
 #define TETE_HAUT_GAUCHE 10
 #define TETE_HAUT_DROITE 8
@@ -259,33 +259,21 @@ void deplace(int grille[30][100]){
     ajouter_tete(&perso, prochaine_position_tete);
     retirer_queue(&perso);
 
-    //Récupère la valeur de la nouvelle tete, modifie la grille et met à jour les graphisles
+    //Récupère la valeur de la nouvelle tete, modifie la grille
     int valeur_prochaine_tete = valeur_tete();
     grille[prochaine_position_tete.y][prochaine_position_tete.x] = valeur_prochaine_tete;
-    changerCaractere(prochaine_position_tete.x,
-                     prochaine_position_tete.y,
-                     blocCaractere(valeur_prochaine_tete));
 
     /*
-    Remplace dans la grille la queue par du vide et met à jour les graphismes
-    Si cette queue a pour position (-1,-1):
-        Alors c'est une queue crée par la fonction (creer) déclarée dans "Personnage.h"
-        Elle n'est pas affichée dans les graphismes donc il n'y a rien modifier
-    Sinon on met à jour les graphismes
+    Remplace dans la grille la queue par du vide
+    Si cette queue a pour position (-1,-1), alors c'est une queue crée par la fonction (creer) déclarée dans "Personnage.h"
     */
     if(ancienne_queue_position.x >= 0 && ancienne_queue_position.y >= 0){
-        grille[ancienne_queue_position.y][ancienne_queue_position.x] = 0;
-        changerCaractere(ancienne_queue_position.x,
-                         ancienne_queue_position.y,
-                         blocCaractere(0));
+        grille[ancienne_queue_position.y][ancienne_queue_position.x] = VIDE;
     }
 
-    //Récupère la nouvelle valeur de l'ancienne tete, modifie la grille et met à jour les graphismes
+    //Récupère la nouvelle valeur de l'ancienne tete, modifie la grille
     int valeur_ancienne_tete = valeur_corps(grille[ancienne_tete_position.y][ancienne_tete_position.x], valeur_prochaine_tete);
     grille[ancienne_tete_position.y][ancienne_tete_position.x] = valeur_ancienne_tete;
-    changerCaractere(ancienne_tete_position.x,
-                     ancienne_tete_position.y,
-                     blocCaractere(valeur_ancienne_tete));
 
     /*
     La grille allant de 0 à 99 en abscisse, on test si le personnage est contre le bord de la grille

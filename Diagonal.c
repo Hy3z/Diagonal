@@ -1,9 +1,11 @@
 #include "Deplacement.h"
 #include "MapManager.h"
+#include "NCursesManager.h"
+#include "BlocManager.h"
 #include <time.h>
 
 //Delai entre 2 déplacements en seconde
-double secondes_delai  = 0.05;
+double secondes_delai;
 
 //Delai entre 2 déplacements en nombre de ticks de processeur
 double tick_delai;
@@ -17,6 +19,8 @@ const int DEPART_Y = 1;
 
 
 int main(){
+    secondes_delai  = 0.05;
+
     //Le delai en ticks est le delai en secondes multiplié par le nombre de ticks par seconde
     double tick_delai = CLOCKS_PER_SEC*secondes_delai;
 
@@ -33,13 +37,13 @@ int main(){
 	creerNiveau(1, grille);
 
 
-	//On initialise la fenêtre avec la fonction (initFenetre) déclarée dans "MapManager.h"
+	//On initialise la fenêtre avec la fonction (initFenetre) déclarée dans "NCursesManager.h"
     initFenetre();
 
 
-    //On affiche la grille avec la fonction (affiche) déclarée dans "MapManager.h"
+    //On affiche la grille avec la fonction (affiche) déclarée dans "NCursesManager.h"
     //On raffraîchit l'écran avec la fonction (rafraichirEcran) déclarée dans "NCursesManager.h"
-    affiche(grille, 100, 30);
+    affiche(grille, BLOC_CARACTERE, 100, 30);
     rafraichirEcran();
 
 
@@ -53,15 +57,42 @@ int main(){
         */
 
 
+        //Recupère les ancienne position de la queue et de la tête afin de mettre à jour les graphismes
+        position ancienneTetePosition = positionTete(perso);
+        position ancienneQueuePosition = positionQueue(perso);
+
         //Deplace la personnage avec la fonction (deplace) déclarée dans "Deplacement.h"
-        //Cette fonction modifie aussi le graphismes avec ncurses (sans raffraichir l'écran)
         deplace(grille);
 
+        //Récupère la nouvelle position de la tête afin de mettre à jour les graphismesi
+        position nouvelleTetePosition = positionTete(perso);
 
-        //Valeur de temps en nombre de ticks de processeur
+
+        //On met à jour le caractère de la nouvelle tête
+        changerCaractere(nouvelleTetePosition.x,
+                         nouvelleTetePosition.y,
+                         blocCaractere(grille[nouvelleTetePosition.y][nouvelleTetePosition.x]));
+
+        /*
+        Les queues créées par la fonction (creer) de "Personnage.h" ont pour coordonnées (-1, -1)
+        On test donc les coordonnées de cette queue pour savoir si il y a quelque chose à mettre à jour dans les graphismes
+        */
+        if(ancienneQueuePosition.x >= 0 && ancienneQueuePosition.y >= 0){
+            changerCaractere(ancienneQueuePosition.x,
+                             ancienneQueuePosition.y,
+                             blocCaractere(grille[ancienneQueuePosition.y][ancienneQueuePosition.x]));
+        }
+
+        //On met à jour le caractère de l'ancienne tête
+        changerCaractere(ancienneTetePosition.x,
+                         ancienneTetePosition.y,
+                         blocCaractere(grille[ancienneTetePosition.y][ancienneTetePosition.x]));
+
+
+        //Valeur de temps en nombre de ticks de processeur, début de l'attente
         clock_t debutAttente = clock();
 
-        //On attend tant que le différence de nombre de ticks processeur entre le début de l'attente et actuellement est inférieur au nombre de ticks que l'on doit attendre
+        //On attend tant que la différence de nombre de ticks processeur entre le début de l'attente et actuellement est inférieure au nombre de ticks que l'on doit attendre
         while((double)(clock()-debutAttente)<tick_delai){
 
             //Si jamais une touche est appuyée durant ce délai, on inverse le deplacement vertical du personnage

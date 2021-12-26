@@ -5,7 +5,6 @@
 #include <ncurses.h>
 #include <stdbool.h>
 #include <assert.h>
-#include "BlocManager.h"
 
 
 //Modifie le caractere d'une case (x,y) de la grille par le caractère (caractere)
@@ -29,7 +28,7 @@ Affiche les caractères de la grille:
     entre (0 et max_x)en abscisse
     entre (0 et max_y) en ordonnée
 */
-void affiche(int grille[30][100], int max_x, int max_y);
+void affiche(int grille[30][100], const char BLOC_CARACTERE[], int max_x, int max_y);
 
 
 //Renvoie si une touche est appuyée sur le clavier a cet instant

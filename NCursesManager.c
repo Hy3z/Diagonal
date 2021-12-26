@@ -1,7 +1,6 @@
 #include <ncurses.h>
 #include <stdbool.h>
 #include <assert.h>
-#include "BlocManager.h"
 
 
 /*
@@ -47,13 +46,13 @@ Préconditions:
     (max_x) est un entier naturel
     (max_y) est un entier naturel
 */
-void affiche(int grille[30][100], int max_x, int max_y){
+void affiche(int grille[30][100], const char BLOC_CARACTERE[], int max_x, int max_y){
     //precondition
     assert(max_x >= 0 && max_y >= 0);
 
     for(int y=0 ; y<max_y ; y++){
         for(int x=0 ; x<max_x ; x++){
-			changerCaractere(x, y, blocCaractere(grille[y][x]));
+			changerCaractere(x, y, BLOC_CARACTERE[grille[y][x]]);
 		}
 	}
 }

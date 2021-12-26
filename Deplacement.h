@@ -3,7 +3,6 @@
 
 
 #include "Personnage.h"
-#include "NCursesManager.h"
 #include <stdbool.h>
 #include <assert.h>
 
@@ -55,8 +54,9 @@ int corps_vaut_11(int valeurTeteApres);
 
 
 /*
-Deplace le personnage dans la grille
-Met à jour les graphismes de l'ancienne et nouvelle tête
+Déplace le personnage en:
+    - Modifiant les valeurs dans la grille
+    - Modifiant la liste chaînée perso
 */
 void deplace(int grille[30][100]);
 
