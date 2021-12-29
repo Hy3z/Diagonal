@@ -2,16 +2,11 @@
 #define MAPMANAGER_H
 
 
-#include <assert.h>
-#include <time.h>
-#include <stdlib.h>
-
-
 /*
 Remplie les cases de (grille) d'indice:
     [[0, x-1]] en abcisse
     [[0, y-1]] en ordonné
-par du vide et pose également les blocs de contour
+par du vide et pose également les blocs de contours
 */
 void mapVide(int grille[30][100], int x, int y) ;
 

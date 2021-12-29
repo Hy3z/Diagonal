@@ -2,9 +2,7 @@
 #define NCURSESMANAGER_H
 
 
-#include <ncurses.h>
 #include <stdbool.h>
-#include <assert.h>
 
 
 //Modifie le caractere d'une case (x,y) de la grille par le caractère (caractere)

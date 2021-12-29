@@ -1,5 +1,4 @@
 #include "Personnage.h"
-#include "NCursesManager.h"
 #include <stdbool.h>
 #include <assert.h>
 
@@ -7,9 +6,6 @@
 //Le personnage commence par aller en bas à droite
 bool direction_bas = true;
 bool direction_droite = true;
-
-
-personnage perso;
 
 
 /*
@@ -58,7 +54,7 @@ void inverse_vertical(){
 Précondition:
     La taille du personnage est un entier naturel non-nul
 */
-position prochaine_position(){
+position prochaine_position(personnage perso){
     //precondition
     assert(perso.taille > 0);
 
@@ -99,8 +95,8 @@ position prochaine_position(){
 Postcondition:
     L'entier renvoyé est un entier naturel compris entre 0 et NOMBRE_BLOCS-1 (définit dans BlocManager)
 */
-int prochain_bloc(int grille[30][100]){
-    position prochaine_pos = prochaine_position();
+int prochain_bloc(personnage perso, int grille[30][100]){
+    position prochaine_pos = prochaine_position(perso);
     return grille[prochaine_pos.y][prochaine_pos.x];
 }
 
@@ -133,7 +129,7 @@ Précondition:
     (y) est un entier naturel
 
 */
-void initialiser_personnage(int grille[30][100], int taille, int x, int y){
+personnage initialiser_personnage(int grille[30][100], int taille, int x, int y){
     //precondition
     assert(taille > 0 && x>=0 && y>=0);
 
@@ -142,10 +138,12 @@ void initialiser_personnage(int grille[30][100], int taille, int x, int y){
 	pos.y=y;
 
     //Creer le personnage avec la fonction (creer) déclarée dans "Personnage.h"
-	perso = creer(taille, pos);
+	personnage perso = creer(taille, pos);
 
 	//Initialise dans la grille la valeur de bloc du personnage
     grille[y][x] = valeur_tete();
+
+    return perso;
 }
 
 
@@ -247,17 +245,17 @@ int valeur_corps(int valeurTeteAvant, int valeurTeteApres){
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-void deplace(int grille[30][100]){
+void deplace(personnage* perso, int grille[30][100]){
     //Récupère les ancienne positions
-    position ancienne_queue_position = perso.queue -> pos;
-    position ancienne_tete_position = perso.tete -> pos;
+    position ancienne_queue_position = (perso -> queue) -> pos;
+    position ancienne_tete_position = (perso -> tete) -> pos;
 
     //Récupère la prochaine position de la tete
-    position prochaine_position_tete = prochaine_position();
+    position prochaine_position_tete = prochaine_position(*perso);
 
     //Ajoute la nouvelle tête et retire la queue
-    ajouter_tete(&perso, prochaine_position_tete);
-    retirer_queue(&perso);
+    ajouter_tete(perso, prochaine_position_tete);
+    retirer_queue(perso);
 
     //Récupère la valeur de la nouvelle tete, modifie la grille
     int valeur_prochaine_tete = valeur_tete();

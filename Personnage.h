@@ -2,10 +2,6 @@
 #define PERSONNAGE_H
 
 
-#include <assert.h>
-#include <stdlib.h>
-
-
 ////////////////////////////////////////////////////////////////////////
 /*
 Structure définissant une position dans la grille
@@ -36,8 +32,12 @@ typedef struct corps_struct corps;
 /*
 Un personnage est définit comme une liste de corps
 Il contient un pointeur vers la queue du personnage (équivalent au premier maillon d'une liste chaînée)
+/!\ La queue du personnage n'est pas la queue de la liste
+
 Il contient un pointeur vers la tête du personnage (équivalent au dernier maillon d'une liste chaînée)
-Il contient un entier qui indique sa taille (équivalent au nombre de maillon de la liste chaînée)
+/!\ La tête du personnage n'est pas le premier élément de la liste
+
+Il contient un entier qui indique sa taille (équivalent au nombre de maillons de la liste chaînée)
 */
 struct personnage_struct {
 	corps* queue;

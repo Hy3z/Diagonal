@@ -4,7 +4,6 @@
 
 #include "Personnage.h"
 #include <stdbool.h>
-#include <assert.h>
 
 
 /*
@@ -20,10 +19,6 @@ Sinon vers la gauche (false)
 extern bool direction_droite;
 
 
-//Variable contenant le personnage
-extern personnage perso;
-
-
 //Inverse le deplacement horizontal
 void inverse_horizontal();
 
@@ -32,11 +27,11 @@ void inverse_vertical();
 
 
 //Renvoie un type position contenant les coordonnées du prochain déplacement du personnage
-position prochaine_position();
+position prochaine_position(personnage perso);
 
 
 //Renvoie le numéro inscrit dans la case où le personnage se trouvera à son prochain déplacement
-int prochain_bloc(int grille[30][100]);
+int prochain_bloc(personnage perso, int grille[30][100]);
 
 
 //Renvoie la valeur que devrait prendre le bloc de la tête en fonction de son orientation
@@ -58,11 +53,11 @@ Déplace le personnage en:
     - Modifiant les valeurs dans la grille
     - Modifiant la liste chaînée perso
 */
-void deplace(int grille[30][100]);
+void deplace(personnage* perso, int grille[30][100]);
 
 
 //Créer le personnage de taille (taille) aux coordonnées (x,y)
-void initialiser_personnage(int grille[30][100], int taille, int x, int y);
+personnage initialiser_personnage(int grille[30][100], int taille, int x, int y);
 
 
 #endif

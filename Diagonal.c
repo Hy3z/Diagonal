@@ -4,6 +4,7 @@
 #include "BlocManager.h"
 #include <time.h>
 
+
 //Delai entre 2 déplacements en seconde
 double secondes_delai;
 
@@ -18,6 +19,10 @@ const int DEPART_X = 1;
 const int DEPART_Y = 1;
 
 
+//Variable contenant le personnage
+personnage perso;
+
+
 int main(){
     secondes_delai  = 0.1;
 
@@ -30,7 +35,7 @@ int main(){
 
 
     //On initialise le personnage avec la fonction (initialiser_personnage) déclarée dans "Deplacement.h"
-	initialiser_personnage(grille, BASE_TAILLE, DEPART_X, DEPART_Y);
+	perso = initialiser_personnage(grille, BASE_TAILLE, DEPART_X, DEPART_Y);
 
 
     //On créer le niveau 1 avec la fonction (creerNiveau) déclarée dans "MapManager.h"
@@ -48,13 +53,7 @@ int main(){
 
 
     //La seule condition de fin de partie est la collision avec un bloc solide
-    while( !blocSolide(prochain_bloc(grille))){
-
-
-        /*
-        fait des trucs en fonction du numero de la case
-        fait des trucs au pif (animation par exemple)
-        */
+    while( !blocSolide(prochain_bloc(perso, grille))){
 
 
         //Recupère les ancienne position de la queue et de la tête afin de mettre à jour les graphismes
@@ -62,7 +61,7 @@ int main(){
         position ancienneQueuePosition = positionQueue(perso);
 
         //Deplace la personnage avec la fonction (deplace) déclarée dans "Deplacement.h"
-        deplace(grille);
+        deplace(&perso, grille);
 
         //Récupère la nouvelle position de la tête afin de mettre à jour les graphismesi
         position nouvelleTetePosition = positionTete(perso);
@@ -105,6 +104,7 @@ int main(){
         //Raffraichit l'écran pour afficher le déplacement du personnage
         rafraichirEcran();
     }
+
 
     //Le jeu est terminé, on ferme la fenêtre
     finFenetre();
