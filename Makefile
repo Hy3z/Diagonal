@@ -1,8 +1,8 @@
-Diagonal: Diagonal.o MapManager.o Deplacement.o NCursesManager.o BlocManager.o Personnage.o
-	gcc Diagonal.o MapManager.o Deplacement.o NCursesManager.o BlocManager.o Personnage.o -o Diagonal -lncurses
+DiagonalRush: DiagonalRush.o MapManager.o Deplacement.o NCursesManager.o BlocManager.o Personnage.o
+	gcc DiagonalRush.o MapManager.o Deplacement.o NCursesManager.o BlocManager.o Personnage.o -o DiagonalRush -lncurses
 
-Diagonal.o: Diagonal.c MapManager.h Deplacement.h NCursesManager.h BlocManager.h
-	gcc -c Diagonal.c
+DiagonalRush.o: DiagonalRush.c MapManager.h Deplacement.h NCursesManager.h BlocManager.h
+	gcc -c DiagonalRush.c
 
 BlocManager.o: BlocManager.c
 	gcc -c BlocManager.c
@@ -21,4 +21,4 @@ Personnage.o: Personnage.c
 
 clean:
 	rm -f *.o
-	rm -f Diagonal
+	rm -f DiagonalRush
