@@ -35,22 +35,41 @@ void mapVide(int grille[30][100], int x, int y) {
 	assert (x > 0 && y > 0) ;
 
 
-	//On remplit la sous grille de vide
+	/*
+	On remplit la sous grille de vide
+
+	Invariant de boucle: (y)
+	Variant de boucle: (y-i)
+	*/
 	for (int i = 0 ; i < y ; i ++ ) {
+        /*
+        Invariant de boucle: (x)
+        Variant de boucle: (x-j)
+        */
 		for (int j = 0 ; j < x ; j ++ ) {
 			grille[i][j] = VIDE ;
 		}
 	}
 
 
-	//On inscrit dans la grille les côtés gauche et droit de murs verticaux (piliers)
+	/*
+	On inscrit dans la grille les côtés gauche et droit de murs verticaux (piliers)
+
+    Invariant de boucle: (y)
+    Variant de boucle: (y-i)
+    */
 	for (int i = 1 ; i < y ; i ++ ) {
 		grille[i][x-1] = MUR_VERTICAL ;
 		grille[i][0] = MUR_VERTICAL ;
 	}
 
 
-	//On inscrit dans la grille les côtés haut et bas de murs horizontaux (sol & plafond)
+	/*
+	On inscrit dans la grille les côtés haut et bas de murs horizontaux (sol & plafond)
+
+	Invariant de boucle: (x)
+    Variant de boucle: (x-j)
+    */
 	for (int j = 1 ; j < x ; j ++ ) {
 		grille[y-1][j] = MUR_HORIZONTAL ;
 		grille[0][j] = MUR_HORIZONTAL ;
@@ -78,7 +97,12 @@ void blocAleatoire(int grille[30][100], int min_x, int min_y, int max_x, int max
     //Initialise la fonction (rand)
     srand(time(NULL));
 
-    //Pour chaque colonne entre min_x et max_x
+    /*
+    Pour chaque colonne entre min_x et max_x
+
+    Invariant de boucle: (max_x)
+    Variant de boucle: (max_x + 1 - x)
+    */
     for(int x=min_x ; x<=max_x ; x++){
 
         //(rand) renvoie un entier aléatoire entre 0 et une constante RAND_MAX

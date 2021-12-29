@@ -91,7 +91,12 @@ int main(){
         //Valeur de temps en nombre de ticks de processeur, début de l'attente
         clock_t debutAttente = clock();
 
-        //On attend tant que la différence de nombre de ticks processeur entre le début de l'attente et actuellement est inférieure au nombre de ticks que l'on doit attendre
+        /*
+        On attend tant que la différence de nombre de ticks processeur entre le début de l'attente et actuellement est inférieure au nombre de ticks que l'on doit attendre
+
+        Invariant de boucle: (partie entière de (tick_delai))
+        Variant de boucle: (partie entière de (tick_delai - (clock() - debutAttente)))
+        */
         while((double)(clock()-debutAttente)<tick_delai){
 
             //Si jamais une touche est appuyée durant ce délai, on inverse le deplacement vertical du personnage

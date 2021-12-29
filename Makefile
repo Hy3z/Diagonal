@@ -1,5 +1,5 @@
 DiagonalRush: DiagonalRush.o MapManager.o Deplacement.o NCursesManager.o BlocManager.o Personnage.o
-	gcc DiagonalRush.o MapManager.o Deplacement.o NCursesManager.o BlocManager.o Personnage.o -o DiagonalRush -lncurses
+	gcc DiagonalRush.o MapManager.o Deplacement.o NCursesManager.o BlocManager.o Personnage.o -o DiagonalRush -IC:\MinGW\include\ncurses -lncurses
 
 DiagonalRush.o: DiagonalRush.c MapManager.h Deplacement.h NCursesManager.h BlocManager.h
 	gcc -c DiagonalRush.c
@@ -8,7 +8,7 @@ BlocManager.o: BlocManager.c
 	gcc -c BlocManager.c
 
 NCursesManager.o: NCursesManager.c
-	gcc -c NCursesManager.c -lncurses
+	gcc -c NCursesManager.c -IC:\MinGW\include\ncurses -lncurses
 
 MapManager.o: MapManager.c
 	gcc -c MapManager.c

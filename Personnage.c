@@ -160,7 +160,12 @@ personnage creer(int taille, position positionTete){
     //On ajoute la tête du personnage avec comme position (positionTete)
     ajouter_tete(&perso, positionTete);
 
-    //On ajoute (taille - 1) queue(s)
+    /*
+    On ajoute (taille - 1) queue(s)
+
+    Invariant de boucle: (taille)
+    Variant de boucle: (taille-1-x)
+    */
     for(int x=0 ; x<taille - 1 ; x++){
         ajouter_queue(&perso);
     }
