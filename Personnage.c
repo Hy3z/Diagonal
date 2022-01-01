@@ -124,6 +124,9 @@ void ajouter_tete(personnage* perso, position positionTete){
         nouvelle_tete = malloc(sizeof(corps));
     }
 
+    //La tête n'a pas de suivant par définition
+    nouvelle_tete -> suivant = NULL;
+
     //La position de la nouvelle tête est (positionTete)
     nouvelle_tete -> pos = positionTete;
 
@@ -173,11 +176,11 @@ personnage creer(int taille, position positionTete){
     return perso;
 }
 
-/*
+
+//Jeu de test
 #include <stdio.h>
 void afficher_perso(personnage perso){
 	corps* actuel = perso.queue;
-	printf("Taille = %d \n",perso.taille);
 	while(actuel!=NULL){
 		printf("(%d %d) ",(actuel -> pos).x , (actuel -> pos).y );
 		actuel = actuel -> suivant;
@@ -185,18 +188,42 @@ void afficher_perso(personnage perso){
 	printf("\n");
 }
 
-int main(){
-	personnage perso;
-	perso.taille = 0;
-	perso.queue = NULL;
-	perso.tete = NULL;
+/*
+Vérifie les posconditions de chaque fonction
+Affiche à chaque opération la structure du personnage à comparer avec la théorie
+*/
+void testPersonnage(){
+    printf("\n");
+    printf("==============Personnage==============");
+    printf("\n");
+
+    int X_INITIAL = 1;
+    int Y_INITIAL = 1;
+    position POS_INITIALE;
+    POS_INITIALE.x = X_INITIAL;
+    POS_INITIALE.y = Y_INITIAL;
+
+    int TAILLE_INITIALE = 2;
+
+	personnage perso = creer(TAILLE_INITIALE, POS_INITIALE);
+    assert(perso.taille == TAILLE_INITIALE);
+    afficher_perso(perso);
+
 	ajouter_queue(&perso);
-	afficher_perso(perso);
-	ajouter_queue(&perso);
-	afficher_perso(perso);
-	retirer_queue(&perso);
-	afficher_perso(perso);
-	retirer_queue(&perso);
+	assert(perso.taille == TAILLE_INITIALE+1);
 	afficher_perso(perso);
 
-}*/
+	retirer_queue(&perso);
+	assert(perso.taille == TAILLE_INITIALE);
+	afficher_perso(perso);
+
+
+    int NOUVEAU_X = 2;
+    int NOUVEAU_Y = 2;
+    position NOUVELLE_POS;
+    NOUVELLE_POS.x = NOUVEAU_X;
+    NOUVELLE_POS.y = NOUVEAU_Y;
+	ajouter_tete(&perso, NOUVELLE_POS);
+	assert(perso.taille == TAILLE_INITIALE + 1);
+	afficher_perso(perso);
+}

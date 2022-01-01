@@ -40,6 +40,7 @@ On utilise #define afin de pouvoir ensuite utiliser ces "variables" en tant que 
 #define CORPS_BAS_DROITE_TO_BAS_GAUCHE 16
 #define CORPS_BAS_DROITE_TO_BAS_DROITE 15
 
+
 void inverse_horizontal(){
     direction_droite = !direction_droite;
 }
@@ -53,6 +54,10 @@ void inverse_vertical(){
 /*
 Précondition:
     La taille du personnage est un entier naturel non-nul
+Postcondition
+    La position renvoyée respecte:
+        Le champ (x) est un entier naturel inférieur à 100
+        Le champ (y) est un entier naturel inférieur à 30
 */
 position prochaine_position(personnage perso){
     //precondition
@@ -66,10 +71,10 @@ position prochaine_position(personnage perso){
     if (direction_droite) {
         pos.x = pos.x + 1;
 
-        //Si le personnage se dirige vers le bas sa valeur en y (ordonée) augmente
+        //Si le personnage se dirige vers le bas sa valeur en y (ordonnée) augmente
 		if (direction_bas) {
             pos.y = pos.y + 1;
-        //Sinon sa valeur en y (ordonée) diminue
+        //Sinon sa valeur en y (ordonnée) diminue
 		} else {
             pos.y = pos.y - 1;
 		}
@@ -78,15 +83,17 @@ position prochaine_position(personnage perso){
 	} else {
 	    pos.x = pos.x - 1;
 
-	    //Si le personnage se dirige vers le bas sa valeur en y (ordonée) augmente
+	    //Si le personnage se dirige vers le bas sa valeur en y (ordonnée) augmente
 		if (direction_bas) {
             pos.y = pos.y + 1;
-        //Sinon sa valeur en y (ordonée) diminue
+        //Sinon sa valeur en y (ordonnée) diminue
 		} else {
             pos.y = pos.y - 1;
 		}
 	}
 
+    //postcondition
+    assert(pos.x>=0 && pos.x<100 && pos.y>=0 && pos.y<30);
     return pos;
 }
 
@@ -281,4 +288,44 @@ void deplace(personnage* perso, int grille[30][100]){
     if((prochaine_position_tete.x <=1 && !direction_droite) || (prochaine_position_tete.x >=98 && direction_droite)){
         inverse_horizontal();
     }
+}
+
+
+//Jeu de test
+#include <stdio.h>
+void testDeplacement(int grille[30][100], int NOMBRE_BLOCS){
+    printf("\n");
+    printf("==============Personnage==============");
+    printf("\n");
+
+    /*
+    Ici on fait les test pour une position de personnage, une taille, une direction définies
+    On pourrait faire varier la position et direction mais il faudrait évaluer 12,000 cas différents
+    */
+    int TAILLE_INITIALE = 2;
+    int X_INITIAL = 1;
+    int Y_INITIAL = 1;
+    personnage perso = initialiser_personnage(grille, TAILLE_INITIALE, X_INITIAL, Y_INITIAL);
+    afficher_perso(perso);
+
+    int prochainBloc = prochain_bloc(perso, grille);
+    //postcondition de prochain_bloc()
+    assert(prochainBloc >= 0 && prochainBloc <= NOMBRE_BLOCS - 1);
+
+    int valeurTeteAvant = valeur_tete();
+    //postcondition de valeur_tete()
+    assert(valeurTeteAvant >=0 && valeurTeteAvant <= NOMBRE_BLOCS - 1);
+
+    deplace(&perso, grille);
+    afficher_perso(perso);
+
+    int valeurTeteApres = valeur_tete();
+    //postcondition de valeur_tete()
+    assert(valeurTeteApres >=0 && valeurTeteApres <= NOMBRE_BLOCS - 1);
+
+    int valeurCorps = valeur_corps(valeurTeteAvant, valeurTeteApres);
+    //postcondition de valeur_corps()
+    assert(valeurCorps >=0 && valeurCorps<= NOMBRE_BLOCS - 1);
+
+
 }

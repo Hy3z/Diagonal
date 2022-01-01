@@ -60,4 +60,8 @@ void deplace(personnage* perso, int grille[30][100]);
 personnage initialiser_personnage(int grille[30][100], int taille, int x, int y);
 
 
+//Effectue les tests pour Deplacement
+void testDeplacement();
+
+
 #endif

@@ -3,6 +3,7 @@
 #include "NCursesManager.h"
 #include "BlocManager.h"
 #include <time.h>
+#include <stdio.h>
 
 
 //Delai entre 2 déplacements en seconde
@@ -23,8 +24,29 @@ const int DEPART_Y = 1;
 personnage perso;
 
 
-int main(){
-    secondes_delai  = 0.1;
+//Fonction éxécutant les différentes fonction de test des blocs de code (rien à tester pour NCursesManager)
+int testDiagonalRush(){
+    printf("==============Début des tests==============");
+    printf("\n");
+
+    testBlocManager();
+
+    testPersonnage();
+
+    testMapManager(obtenirNOMBRE_BLOCS());
+
+    int grille[30][100];
+    grilleVide(grille,100,30);
+    testDeplacement(grille, obtenirNOMBRE_BLOCS());
+
+    printf("\n");
+    printf("==============Fin des tests==============");
+    printf("\n");
+}
+
+
+//Fonction démarrant le jeu, avec en paramètre le délai et la niveau à charger
+void diagonalRush(int secondes_delai, int niveau){
 
     //Le delai en ticks est le delai en secondes multiplié par le nombre de ticks par seconde
     double tick_delai = CLOCKS_PER_SEC*secondes_delai;
@@ -39,7 +61,7 @@ int main(){
 
 
     //On créer le niveau 1 avec la fonction (creerNiveau) déclarée dans "MapManager.h"
-	creerNiveau(1, grille);
+	creerNiveau(niveau, grille);
 
 
 	//On initialise la fenêtre avec la fonction (initFenetre) déclarée dans "NCursesManager.h"
@@ -113,5 +135,11 @@ int main(){
 
     //Le jeu est terminé, on ferme la fenêtre
     finFenetre();
+}
+
+
+int main(){
+    //testDiagonalRush();
+    diagonalRush(0.1, 1);
     return 0;
 }

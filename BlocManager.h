@@ -47,4 +47,10 @@ bool blocSolide(int numeroBloc);
 char blocCaractere(int numeroBloc);
 
 
+//Renvoie la valeur de la constante NOMBRE_BLOCS
+int obtenirNOMBRE_BLOCS();
+
+
+//Effectue les tests pour BlocManager
+void testBlocManager();
 #endif

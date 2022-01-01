@@ -86,11 +86,22 @@ char blocCaractere(int numeroBloc){
 }
 
 
+int obtenirNOMBRE_BLOCS(){
+    return NOMBRE_BLOCS;
+}
 
-//Jeu de test
+
 /*
+Jeu de test
+Renvoie la collision/caractère en fonction du numéro de bloc
+Résultats à comparer avec le tableau des blocs pour vérifier
+*/
 #include <stdio.h>
-int main(){
+void testBlocManager(){
+    printf("\n");
+    printf("==============BlocManager==============");
+    printf("\n");
+
     printf("Collision des blocs suivants: \n");
 	for(int x=0 ; x<NOMBRE_BLOCS; x++){
         printf("%d = %d \n", x , blocSolide(x));
@@ -103,5 +114,4 @@ int main(){
         printf("%d = %c \n", x , blocCaractere(x));
 	}
 }
-*/
 

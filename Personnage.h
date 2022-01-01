@@ -72,4 +72,10 @@ void ajouter_tete(personnage* perso, position positionTete);
 personnage creer(int taille, position positionTete);
 
 
+//Affiche la strucure du personnage sous la forme (maillon1.pos.x, maillon1.pos.y) (maillon2.pos.x, maillon2.pos.y) (...)
+void afficher_perso(personnage perso);
+
+
+//Effectue les tests pour Personnage
+void testPersonnage();
 #endif

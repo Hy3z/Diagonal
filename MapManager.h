@@ -8,7 +8,7 @@ Remplie les cases de (grille) d'indice:
     [[0, y-1]] en ordonné
 par du vide et pose également les blocs de contours
 */
-void mapVide(int grille[30][100], int x, int y) ;
+void grilleVide(int grille[30][100], int x, int y) ;
 
 
 /*
@@ -30,5 +30,7 @@ Les blocs peuvent se placer sur les lignes entre min_y et max_y inclus
 void blocAleatoire(int grille[30][100], int min_x, int min_y, int max_x, int max_y);
 
 
+//Effectue les tests pour MapManager
+void testMapManager(int NOMBRE_BLOCS);
 #endif
 

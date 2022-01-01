@@ -29,7 +29,7 @@ Postcondition:
     ):
         grille[y0][x0] est un entier naturel compris entre 0 et NOMBRE_BLOCS-1 (définit dans BlocManager.c)
 */
-void mapVide(int grille[30][100], int x, int y) {
+void grilleVide(int grille[30][100], int x, int y) {
 
     //precondition
 	assert (x > 0 && y > 0) ;
@@ -84,7 +84,8 @@ void mapVide(int grille[30][100], int x, int y) {
 }
 
 
-/*Précondition:
+/*
+Précondition:
     (min_x) est un entier naturel
     (min_y) est un entier naturel
     (max_x) est un entier naturel inférieur à 100
@@ -120,14 +121,15 @@ void blocAleatoire(int grille[30][100], int min_x, int min_y, int max_x, int max
 
 
 void creerNiveau1(int grille[30][100]){
-    mapVide(grille, 100, 30);
+    grilleVide(grille, 100, 30);
 
     //Les blocs apparaîtront entre la colonne 10 et la colonne 98
     blocAleatoire(grille, 10, 2, 98, 28);
 }
 
 
-/*Précondition:
+/*
+Précondition:
     (niveau) est un entier naturel non-nul
 */
 void creerNiveau(int niveau, int grille[30][100]){
@@ -142,4 +144,23 @@ void creerNiveau(int niveau, int grille[30][100]){
         creerNiveau1(grille);
         break;
     }
+}
+
+
+//Jeu de test
+#include <stdio.h>
+void testMapManager(int NOMBRE_BLOCS){
+    printf("\n");
+    printf("==============MapManager==============");
+    printf("\n");
+
+    int grille[30][100];
+    grilleVide(grille, 100,  30);
+    for(int x=0; x<100; x++){
+        for(int y=0; y<30; y++){
+            //Test postcondition de la fonction grilleVide
+            assert(grille[y][x] >= 0 && grille[y][x] <= NOMBRE_BLOCS - 1);
+        }
+    }
+    printf("grilleVide validee");
 }
