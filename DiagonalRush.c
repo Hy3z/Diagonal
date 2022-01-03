@@ -26,7 +26,7 @@ personnage perso;
 
 //Fonction éxécutant les différentes fonction de test des blocs de code (rien à tester pour NCursesManager)
 int testDiagonalRush(){
-    printf("==============Début des tests==============");
+    printf("==============Debut des tests==============");
     printf("\n");
 
     testBlocManager();
@@ -140,7 +140,7 @@ void diagonalRush(float secondes_delai, int niveau){
 
 
 int main(){
-    //testDiagonalRush();
-    diagonalRush(0.1, 1);
+	//testDiagonalRush();
+    diagonalRush(0.15, 1);
     return 0;
 }

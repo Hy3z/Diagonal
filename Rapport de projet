@@ -1,0 +1,40 @@
+Public général -> votre sujet
+Introduction :
+-> Présentation jeu, les règles, capture d'écran, ect.
+-> Présentation jeu point de vue C (Compréhensible et logique)(Pour cette partie on a utilisé une grille ... ( rapide et simple ) )
+-> Soulève des problèmatiques
+
+Développements :
+-> 2 ou 3 voire 4 développements.
+-> Bien poser le problème
+-> Présenter la solution utilisée.
+----> J'ai utilsé une fonction... pour.... (Pour éclairer la problèmatique)
+----> Tel problème, telle solution, ce programme est intérresant à faire car...
+----> Besoin de réservation dynamique/statique
+----> Le spectateur de doit pas forcément comprendre exactement le point technique mais comprendre pourquoi grâce à l'intro
+
+Conclusion / Ouverture :
+-> Bilan : Ce qui marche / ne marche pas (Exemple : échecs -> Manque des règles spéciales)
+-> Ouverture : et la suite? 
+
+
+Le tout en 8 pages maximun 
+
+
+Pour l'ouverture on peut mettre:
+- Rajouter des niveaux
+- Implémenter l'encodage unicode plutot que l'ascii (graphismes)
+- Implementer des blocs spéciaux genre (augmenter ta taille, augmenter ta vitessse, ...)
+etc...
+
+Décrire plus longtemps et plus simplement le jeu
+Simplifier la description du point de vue C
+Genre quand tu dis que le perso c'est une tête et une queue dans une liste chaînée...
+Je pense vaut mieux moins en dire pour pouvoir mettre plus de choses dans le développement
+/!\Tu as appelé un tableau 2 dimension une grille de 2 entier
+
+problème: le personnage c'est un snake
+résolution: mise en place d'une liste chaînée avec pointeur tête-queue
+--
+problème: affichage en fonction du numéro du bloc
+résolution: liste contenant des characteres (on aurait pu faire un switch mais on a choisit autre chose car....)

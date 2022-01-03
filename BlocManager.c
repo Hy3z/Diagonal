@@ -34,31 +34,30 @@ const int BLOC_COLLISION[NOMBRE_BLOCS] = {
 
 //On définit la constante BLOC_CARACTERE
 const char BLOC_CARACTERE[NOMBRE_BLOCS] = {
-		' ',
-		'*',
-		'=',
-		'|',
+	' ',
+	'*',
+	'=',
+	'|',
 
-		'+',
-		'+',
-		'+',
-		'+',
+	'+',
+	'+',
+	'+',
+	'+',
 
-		'1',
-		'2',
-		'3',
-		'4',
-		'^',
+	'1',
+	'2',
+	'3',
+	'4',
+	
+	'^',
+	'v',
 
-		'v',
+	'/',
+	'\\',
+	'>',
+	'<',
 
-		'/',
-		'\\',
-
-		'>',
-		'<',
-
-		'#'
+	'#'
 };
 
 

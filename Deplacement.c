@@ -295,7 +295,7 @@ void deplace(personnage* perso, int grille[30][100]){
 #include <stdio.h>
 void testDeplacement(int grille[30][100], int NOMBRE_BLOCS){
     printf("\n");
-    printf("==============Personnage==============");
+    printf("==============Deplacement==============");
     printf("\n");
 
     /*
