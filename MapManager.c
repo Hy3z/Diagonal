@@ -162,5 +162,5 @@ void testMapManager(int NOMBRE_BLOCS){
             assert(grille[y][x] >= 0 && grille[y][x] <= NOMBRE_BLOCS - 1);
         }
     }
-    printf("grilleVide validee");
+    printf("grilleVide valide \n");
 }

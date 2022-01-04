@@ -3,7 +3,10 @@
 #include <assert.h>
 
 
-//Le personnage commence par aller en bas à droite
+/*
+Le personnage commence toujours par aller en bas à droite
+De futurs ajout de niveaux pourront demander de modifier ces valeurs de base au début de la partie (ex: un niveau où le personnage commence en bas à droite de la carte)
+*/
 bool direction_bas = true;
 bool direction_droite = true;
 
@@ -299,33 +302,39 @@ void testDeplacement(int grille[30][100], int NOMBRE_BLOCS){
     printf("\n");
 
     /*
-    Ici on fait les test pour une position de personnage, une taille, une direction définies
-    On pourrait faire varier la position et direction mais il faudrait évaluer 12,000 cas différents
+    Ici on fait les test pour une position de personnage, une taille, une direction pré-définie
+    On pourrait faire varier la position et direction pour tester tous les cas mais il faudrait évaluer 12,000 cas différents
     */
     int TAILLE_INITIALE = 2;
     int X_INITIAL = 1;
     int Y_INITIAL = 1;
     personnage perso = initialiser_personnage(grille, TAILLE_INITIALE, X_INITIAL, Y_INITIAL);
+    printf("Creation personnage taille %d: ", TAILLE_INITIALE);
     afficher_perso(perso);
 
     int prochainBloc = prochain_bloc(perso, grille);
     //postcondition de prochain_bloc()
     assert(prochainBloc >= 0 && prochainBloc <= NOMBRE_BLOCS - 1);
+    printf("prochainBloc valide \n");
 
     int valeurTeteAvant = valeur_tete();
     //postcondition de valeur_tete()
     assert(valeurTeteAvant >=0 && valeurTeteAvant <= NOMBRE_BLOCS - 1);
+    printf("valeurTeteAvant valide \n");
 
     deplace(&perso, grille);
+    printf("Deplacement du personnage: ");
     afficher_perso(perso);
 
     int valeurTeteApres = valeur_tete();
     //postcondition de valeur_tete()
     assert(valeurTeteApres >=0 && valeurTeteApres <= NOMBRE_BLOCS - 1);
+    printf("valeurTeteApres valide \n");
 
     int valeurCorps = valeur_corps(valeurTeteAvant, valeurTeteApres);
     //postcondition de valeur_corps()
     assert(valeurCorps >=0 && valeurCorps<= NOMBRE_BLOCS - 1);
+    printf("valeurCorps valide \n");
 
 
 }

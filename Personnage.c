@@ -207,14 +207,17 @@ void testPersonnage(){
 
 	personnage perso = creer(TAILLE_INITIALE, POS_INITIALE);
     assert(perso.taille == TAILLE_INITIALE);
+    printf("Creation personnage taille %d: ", TAILLE_INITIALE);
     afficher_perso(perso);
 
 	ajouter_queue(&perso);
 	assert(perso.taille == TAILLE_INITIALE+1);
+	printf("Ajout d'une queue: ");
 	afficher_perso(perso);
 
 	retirer_queue(&perso);
 	assert(perso.taille == TAILLE_INITIALE);
+	printf("Suppression d'une queue: ");
 	afficher_perso(perso);
 
 
@@ -225,5 +228,6 @@ void testPersonnage(){
     NOUVELLE_POS.y = NOUVEAU_Y;
 	ajouter_tete(&perso, NOUVELLE_POS);
 	assert(perso.taille == TAILLE_INITIALE + 1);
+	printf("Ajout d'une tete: ");
 	afficher_perso(perso);
 }

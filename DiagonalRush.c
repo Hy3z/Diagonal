@@ -48,6 +48,7 @@ int testDiagonalRush(){
 //Fonction démarrant le jeu, avec en paramètre le délai et la niveau à charger
 void diagonalRush(float secondes_delai, int niveau){
 
+
     //Le delai en ticks est le delai en secondes multiplié par le nombre de ticks par seconde
     double tick_delai = CLOCKS_PER_SEC*secondes_delai;
 
@@ -140,7 +141,7 @@ void diagonalRush(float secondes_delai, int niveau){
 
 
 int main(){
-	//testDiagonalRush();
-    diagonalRush(0.15, 1);
+	testDiagonalRush();
+    diagonalRush(0.12, 1);
     return 0;
 }
