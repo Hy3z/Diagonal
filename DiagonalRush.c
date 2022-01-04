@@ -75,7 +75,10 @@ void diagonalRush(float secondes_delai, int niveau){
     rafraichirEcran();
 
 
-    //La seule condition de fin de partie est la collision avec un bloc solide
+    /*
+    Boucle de jeu
+    La seule condition de fin de partie est la collision avec un bloc solide
+    */
     while( !blocSolide(prochain_bloc(perso, grille))){
 
 
@@ -133,6 +136,7 @@ void diagonalRush(float secondes_delai, int niveau){
         rafraichirEcran();
 
     }
+    //Fin de la boucle de jeu
 
 
     //Le jeu est terminé, on ferme la fenêtre
@@ -141,7 +145,11 @@ void diagonalRush(float secondes_delai, int niveau){
 
 
 int main(){
+    //Lance les tests
 	testDiagonalRush();
+
+	//Lance le jeu
     diagonalRush(0.12, 1);
+
     return 0;
 }
