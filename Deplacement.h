@@ -60,6 +60,10 @@ void deplace(personnage* perso, int grille[30][100]);
 personnage initialiser_personnage(int grille[30][100], int taille, int x, int y);
 
 
+//Permet de changer manuellement la direction du personnage
+void mettreDirection(bool bas, bool droite);
+
+
 //Effectue les tests pour Deplacement
 void testDeplacement();
 

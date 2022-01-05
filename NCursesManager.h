@@ -33,5 +33,16 @@ void affiche(int grille[30][100], const char BLOC_CARACTERE[], int max_x, int ma
 bool isToucheAppuyee();
 
 
+//Efface le contenu de la fenêtre NCurses
+void effacer();
+
+
+/*
+Affiche le message de fin de partie
+Attend qu'une touche soit appuyée et renvoie true si une partie doit se relancer
+*/
+bool relancerPartie();
+
+
 #endif
 

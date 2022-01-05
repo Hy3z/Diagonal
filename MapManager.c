@@ -38,7 +38,6 @@ void grilleVide(int grille[30][100], int x, int y) {
 	/*
 	On remplit la sous grille de vide
 
-	Invariant de boucle: (y)
 	Variant de boucle: (y-i)
 	*/
 	for (int i = 0 ; i < y ; i ++ ) {
@@ -55,7 +54,6 @@ void grilleVide(int grille[30][100], int x, int y) {
 	/*
 	On inscrit dans la grille les côtés gauche et droit de murs verticaux (piliers)
 
-    Invariant de boucle: (y)
     Variant de boucle: (y-i)
     */
 	for (int i = 1 ; i < y ; i ++ ) {
@@ -67,7 +65,6 @@ void grilleVide(int grille[30][100], int x, int y) {
 	/*
 	On inscrit dans la grille les côtés haut et bas de murs horizontaux (sol & plafond)
 
-	Invariant de boucle: (x)
     Variant de boucle: (x-j)
     */
 	for (int j = 1 ; j < x ; j ++ ) {
@@ -101,7 +98,6 @@ void blocAleatoire(int grille[30][100], int min_x, int min_y, int max_x, int max
     /*
     Pour chaque colonne entre min_x et max_x
 
-    Invariant de boucle: (max_x)
     Variant de boucle: (max_x + 1 - x)
     */
     for(int x=min_x ; x<=max_x ; x++){

@@ -177,6 +177,21 @@ personnage creer(int taille, position positionTete){
 }
 
 
+void detruire_personnage(personnage perso){
+    //On commence de la queue
+    corps* actuel = perso.queue;
+
+    //A chaque fois que le corps n'est pas null -> il y a de l'espace à libérer
+    while(actuel != NULL){
+        corps* suivant = actuel -> suivant;
+        free(actuel);
+
+        //On traite ensuite le maillon suivant
+        actuel = suivant;
+    }
+}
+
+
 //Jeu de test
 #include <stdio.h>
 void afficher_perso(personnage perso){

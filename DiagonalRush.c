@@ -20,10 +20,6 @@ const int DEPART_X = 1;
 const int DEPART_Y = 1;
 
 
-//Variable contenant le personnage
-personnage perso;
-
-
 //Fonction éxécutant les différentes fonction de test des blocs de code (rien à tester pour NCursesManager)
 int testDiagonalRush(){
     printf("==============Debut des tests==============");
@@ -58,15 +54,20 @@ void diagonalRush(float secondes_delai, int niveau){
 
 
     //On initialise le personnage avec la fonction (initialiser_personnage) déclarée dans "Deplacement.h"
-	perso = initialiser_personnage(grille, BASE_TAILLE, DEPART_X, DEPART_Y);
+	personnage perso = initialiser_personnage(grille, BASE_TAILLE, DEPART_X, DEPART_Y);
+
+
+    //On re-initialise le deplacement en bas à droite à chaque début de partie
+    mettreDirection(true, true);
 
 
     //On créer le niveau 1 avec la fonction (creerNiveau) déclarée dans "MapManager.h"
 	creerNiveau(niveau, grille);
 
 
-	//On initialise la fenêtre avec la fonction (initFenetre) déclarée dans "NCursesManager.h"
-    initFenetre();
+	//Efface la fenêtre, afin de ré-initialiser l'affichage lors de la seconde (ou plus) partie
+    effacer();
+    rafraichirEcran();
 
 
     //On affiche la grille avec la fonction (affiche) déclarée dans "NCursesManager.h"
@@ -120,7 +121,6 @@ void diagonalRush(float secondes_delai, int niveau){
         /*
         On attend tant que la différence de nombre de ticks processeur entre le début de l'attente et actuellement est inférieure au nombre de ticks que l'on doit attendre
 
-        Invariant de boucle: (partie entière de (tick_delai))
         Variant de boucle: (partie entière de (tick_delai - (clock() - debutAttente)))
         */
         while((double)(clock()-debutAttente)<tick_delai){
@@ -138,18 +138,36 @@ void diagonalRush(float secondes_delai, int niveau){
     }
     //Fin de la boucle de jeu
 
-
-    //Le jeu est terminé, on ferme la fenêtre
-    finFenetre();
+    //Fin de la partie, on libère l'espace mémoire du personnage
+    detruire_personnage(perso);
 }
 
 
 int main(){
+    //On initalise ici le delai en secondes entre chaque déplacements et le niveau à utiliser pour chaque futurs parties
+    float secondes_delai = 0.13;
+    int niveau = 1;
+
+
+    //On initialise la fenêtre avec la fonction (initFenetre) déclarée dans "NCursesManager.h"
+    initFenetre();
+
+
     //Lance les tests
 	testDiagonalRush();
 
-	//Lance le jeu
-    diagonalRush(0.12, 1);
 
+	//Demarrage du jeu au lancement
+    diagonalRush(secondes_delai, niveau);
+
+
+    //Tant que le joueur appuie sur une touche autre que celle pour arreter, la partie se relance avec les mêmes paramètres
+    while(relancerPartie()){
+        diagonalRush(secondes_delai, niveau);
+    }
+
+
+    //Le jeu est terminé, on ferme la fenêtre
+    finFenetre();
     return 0;
 }

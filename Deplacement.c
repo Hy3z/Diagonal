@@ -294,6 +294,12 @@ void deplace(personnage* perso, int grille[30][100]){
 }
 
 
+void mettreDirection(bool bas, bool droite){
+    direction_bas = bas;
+    direction_droite = droite;
+}
+
+
 //Jeu de test
 #include <stdio.h>
 void testDeplacement(int grille[30][100], int NOMBRE_BLOCS){

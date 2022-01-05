@@ -3,9 +3,10 @@
 #include <assert.h>
 
 
-/*
-La fonction mvaddch de ncurses prend la valeur en ordonnée en 1er argument et la valeur en abscisse en 2eme
+const int TOUCHE_FIN_PARTIE = KEY_DC;
 
+
+/*
 Précondition:
     (x) est un entier naturel
     (y) est un entier naturel
@@ -14,8 +15,10 @@ void changerCaractere(int x, int y, char caractere){
     //précondition
     assert(x>=0 && y>=0);
 
+    //La fonction mvaddch de ncurses prend la valeur en ordonnée en 1er argument et la valeur en abscisse en 2eme
     mvaddch(y, x, caractere);
 }
+
 
 //Appelle la fonction refresh de ncurses qui raffrachît les caractères affichés sur l'écran
 void rafraichirEcran(){
@@ -67,4 +70,28 @@ void finFenetre(){
 bool isToucheAppuyee(){
     //getch renvoit une valeur lorsque une touche vient d'être enfoncée
     return getch()!=ERR;
+}
+
+
+void effacer(){
+    clear();
+}
+
+
+bool relancerPartie(){
+    //Affiche le message de fin de partie
+    mvprintw(13, 30, " Game Over! ");
+    mvprintw(14, 30, " Appuyez sur une touche pour relancer ");
+    mvprintw(15, 30, " Ou appuyez sur 'suppr' pour quitter ");
+    rafraichirEcran();
+
+    //On attend que le joueur appuie sur une touche
+    nodelay(stdscr,false);
+    int toucheAppuyee = getch();
+
+    //On réactive le mode nodelay pour la partie suivante
+    nodelay(stdscr,true);
+
+    //Si la touche appuyee n'est pas celle de fin de partie, c'est à dire qu'on va relancer une partie, on renvoit true
+    return toucheAppuyee != TOUCHE_FIN_PARTIE;
 }
